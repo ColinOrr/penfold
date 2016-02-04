@@ -1,2 +1,2 @@
 # penfold
-Yet another BDD specification library built on NUnit
+Yet another BDD specification library for .NET
