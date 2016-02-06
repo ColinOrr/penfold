@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Examples\RSpec.cs" />
-    <Compile Include="Models\Calculator.cs" />
+    <Compile Include="Examples\Calculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,13 +1,14 @@
-﻿using System;
+﻿using NUnit.Framework;
 
 namespace Penfold
 {
     /// <summary>
-    /// Represents a test that is run against the current context.
+    /// The primary step that Penfold uses, an assesrtion maps directly to an
+    /// NUnit test that can be executed.  Every specification needs at least one
+    /// assertion to be executable.
     /// </summary>
-    public class Assertion
+    public class Assertion : Step
     {
-        public string Title { get; set; }
-        public Action Action { get; set; }
+        public TestStatus? Status { get; set; }
     }
 }

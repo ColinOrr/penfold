@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using Penfold;
 using Should;
-using Tests.Models;
 
 namespace Tests.Examples
 {
@@ -10,14 +9,25 @@ namespace Tests.Examples
     {
         public CalculatorSpecification()
         {
-            it["adds two and three to get five"] = () =>
+            describe["Addition"] = () =>
             {
-                new Calculator().Key(2).Add(3).Total.ShouldEqual(5);
+                it["adds two and three to get five"] = () =>
+                {
+                    new Calculator().Key(2).Add(3).Total.ShouldEqual(5);
+                };
+
+                it["adds two, three and four to get nine"] = () =>
+                {
+                    new Calculator().Key(2).Add(3).Add(4).Total.ShouldEqual(9);
+                };
             };
 
-            it["adds two, three and four to get nine"] = () =>
+            describe["Subtraction"] = () =>
             {
-                new Calculator().Key(2).Add(3).Add(4).Total.ShouldEqual(9);
+                it["subtracts four from six to get two"] = () =>
+                {
+                    new Calculator().Key(6).Subtract(4).Total.ShouldEqual(2);
+                };
             };
         }
     }

@@ -1,31 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Penfold
 {
     /// <summary>
-    /// Allows steps in a specification to be expressed using indexes and actions.
+    /// Allows steps in a specification to be expressed using the format
+    /// keyword["step title"] = () => { ... }
     /// </summary>
-    public class StepBuilder
+    public class StepBuilder<T> where T : Step, new()
     {
-        private readonly List<Assertion> steps;
+        private readonly SpecificationBase specification;
 
-        public StepBuilder(List<Assertion> steps)
+        public StepBuilder(SpecificationBase specification)
         {
-            this.steps = steps;
+            this.specification = specification;
         }
 
         public Action this[string title]
         {
             set
             {
-                var step = new Assertion
+                var step = new T
                 {
-                    Title  = title,
-                    Action = value,
+                    Context = specification.Context,
+                    Title   = title,
+                    Action  = value,
                 };
 
-                steps.Add(step);
+                specification.Context.Steps.Add(step);
+
+                // Execute child contexts to gather their steps
+                var context = step as Context;
+                if (context != null)
+                {
+                    var original = specification.Context;
+
+                    specification.Context = context;
+                    context.Action();
+                    specification.Context = original;
+                }
             }
         }
     }
