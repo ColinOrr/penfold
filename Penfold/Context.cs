@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Penfold
 {
@@ -9,6 +10,14 @@ namespace Penfold
     public class Context : Step
     {
         public List<Step> Steps { get; private set; }
+
+        public override bool Executed
+        {
+            get
+            {
+                return this.Flatten().Skip(1).Any(s => s.Executed);
+            }
+        }
 
         public Context()
         {

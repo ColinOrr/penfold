@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activity.cs" />
     <Compile Include="Assertion.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Extensions.cs" />

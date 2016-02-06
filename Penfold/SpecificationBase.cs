@@ -33,7 +33,7 @@ namespace Penfold
                     from step in Context.Flatten().OfType<Assertion>()
                     select new TestCaseData(step)
                         .SetName(step.Title)
-                        .SetCategory(string.Join(" · ", step.Parents()));
+                        .SetCategory(string.Join(" · ", step.Ancestors()));
             }
         }
 
@@ -56,20 +56,23 @@ namespace Penfold
         [Test, TestCaseSource("Tests")]
         public void Execute(Assertion test)
         {
-            foreach (var context in test.Parents())
-            {
-                if (context.Flatten().OfType<Assertion>().All(a => a.Status == null))
-                {
-                    logger.Indent = context.Parents().Count();
-                    logger.WriteLine(context);
-                }
-            }
-
-            logger.Indent = test.Parents().Count();
-            logger.WriteLine(test);
-
             try
             {
+                var plan = test.Ancestors().First().Flatten();
+
+                // Run through the previous unexecuted contexts and activities
+                foreach (var step in plan.Before(test).Where(s => !s.Executed))
+                {
+                    if (step is Context) log(step);
+                    else if (step is Activity)
+                    {
+                        log(step);
+                        step.Action();
+                    }
+                }
+
+                // Execute the test
+                log(test);
                 test.Action();
                 test.Status = TestStatus.Passed;
             }
@@ -78,6 +81,13 @@ namespace Penfold
                 test.Status = TestStatus.Failed;
                 throw;
             }
+        }
+
+        private void log(Step step)
+        {
+            if (step.ToString().IsEmpty()) return;
+            logger.Indent = step.Ancestors().Count(a => a.ToString().IsNotEmpty());
+            logger.WriteLine(step);
         }
     }
 }
