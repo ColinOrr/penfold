@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Penfold
@@ -22,6 +23,25 @@ namespace Penfold
         public Context()
         {
             Steps = new List<Step>();
+        }
+
+        /// <summary>
+        /// Adds a step to the current context, ensuring that the step's 
+        /// <see cref="Step.Context"/> is set.
+        /// </summary>
+        public void Add(Step step)
+        {
+            step.Context = this;
+            Steps.Add(step);
+        }
+
+        /// <summary>
+        /// Adds an action as a blank step of type T.
+        /// </summary>
+        public void Add<T>(Action action) where T : Step, new()
+        {
+            var step = new T { Action = action };
+            this.Add(step);
         }
     }
 }

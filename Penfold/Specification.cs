@@ -11,14 +11,8 @@ namespace Penfold
         public StepBuilder<Context> context { get; private set; }
         public StepBuilder<Assertion> it { get; private set; }
 
-        public Action before
-        {
-            set
-            {
-                var step = new Activity { Context = Context, Action = value };
-                Context.Steps.Add(step);
-            }
-        }
+        public Action before { set { Context.Add<Activity>(value); } }
+        public Action after { set { Context.Add<Activity>(value); } }
 
         public Specification()
         {

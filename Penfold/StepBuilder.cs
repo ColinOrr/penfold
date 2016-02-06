@@ -21,12 +21,11 @@ namespace Penfold
             {
                 var step = new T
                 {
-                    Context = specification.Context,
                     Title   = title,
                     Action  = value,
                 };
 
-                specification.Context.Steps.Add(step);
+                specification.Context.Add(step);
 
                 // Execute child contexts to gather their steps
                 var context = step as Context;

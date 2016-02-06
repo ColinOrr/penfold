@@ -35,6 +35,8 @@ namespace Tests.Examples
                     it["sets the total to two"] = () => calculator.Total.ShouldEqual(2);
                 };
             };
+
+            after = () => calculator.Clear();
         }
     }
 }
