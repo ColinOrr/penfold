@@ -22,7 +22,7 @@ namespace Tests.Features
                         specification.Execute();
                     };
 
-                    it["executes the code in the assertion"] = () =>
+                    it["runs the code in the assertion"] = () =>
                     {
                         executed.ShouldBeTrue();
                     };
@@ -45,7 +45,7 @@ namespace Tests.Features
                         specification.Execute();
                     };
 
-                    it["executes the code in both assertions"] = () =>
+                    it["runs the code in both assertions"] = () =>
                     {
                         executed.ShouldEqual(2);
                     };
