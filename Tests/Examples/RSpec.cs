@@ -29,7 +29,7 @@ namespace Tests.Examples
 
             describe["Subtraction"] = () =>
             {
-                context["subtracting four from size"] = () =>
+                context["subtracting four from six"] = () =>
                 {
                     before = () => calculator.Key(6).Subtract(4).Total.ShouldEqual(2);
                     it["sets the total to two"] = () => calculator.Total.ShouldEqual(2);

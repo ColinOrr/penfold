@@ -9,10 +9,12 @@ namespace Penfold
     public class StepBuilder<T> where T : Step, new()
     {
         private readonly SpecificationBase specification;
+        private readonly string format;
 
-        public StepBuilder(SpecificationBase specification)
+        public StepBuilder(SpecificationBase specification, string format = null)
         {
             this.specification = specification;
+            this.format = format;
         }
 
         public Action this[string title]
@@ -21,8 +23,9 @@ namespace Penfold
             {
                 var step = new T
                 {
-                    Title   = title,
-                    Action  = value,
+                    Title  = title,
+                    Action = value,
+                    Format = format,
                 };
 
                 specification.Context.Add(step);

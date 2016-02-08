@@ -14,7 +14,20 @@ namespace Penfold
     [TestFixture]
     public abstract class SpecificationBase
     {
-        private readonly IndentedTextWriter logger;
+        private IndentedTextWriter logger;
+
+        /// <summary>
+        /// Gets or sets the logger used for the output.
+        /// </summary>
+        public TextWriter Logger
+        {
+            get { return logger.InnerWriter; }
+            set 
+            {
+                value = value ?? new StringWriter();
+                logger = new IndentedTextWriter(value, "  "); 
+            }
+        }
 
         /// <summary>
         /// Gets or sets the current context containing the steps to be executed.
@@ -23,7 +36,7 @@ namespace Penfold
 
         /// <summary>
         /// Gets the asssertions to be tested.
-        /// Called by NUnit to identify the sequence of tests to be passed to <see cref="Execute"/>.
+        /// Called by NUnit to identify the sequence of tests to be passed to <see cref="Execute(Assertion)"/>.
         /// </summary>
         public IEnumerable<TestCaseData> Tests
         {
@@ -42,12 +55,24 @@ namespace Penfold
         /// </summary>
         protected SpecificationBase()
         {
-            logger = new IndentedTextWriter(Console.Out, "  ");
-
+            Logger = Console.Out;
+            
             Context = new Context
             {
                 Title = this.GetType().Name,
             };
+        }
+
+        /// <summary>
+        /// Executes the specification.
+        /// </summary>
+        public void Execute()
+        {
+            foreach (var test in Tests)
+            {
+                try { Execute(test.Arguments.Cast<Assertion>().Single()); }
+                catch { }
+            }
         }
 
         /// <summary>
@@ -83,11 +108,22 @@ namespace Penfold
             }
         }
 
-        private void log(Step step)
+        /// <summary>
+        /// Logs the title of a specified test.
+        /// </summary>
+        public void log(Step step)
         {
             if (step.ToString().IsEmpty()) return;
             logger.Indent = step.Ancestors().Count(a => a.ToString().IsNotEmpty());
             logger.WriteLine(step);
+        }
+
+        /// <summary>
+        /// Logs the specified message to the test output.
+        /// </summary>
+        public void log(object message)
+        {
+            logger.WriteLine(message);
         }
     }
 }

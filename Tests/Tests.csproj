@@ -51,6 +51,15 @@
   <ItemGroup>
     <Compile Include="Examples\RSpec.cs" />
     <Compile Include="Examples\Calculator.cs" />
+    <Compile Include="Features\AssertionSpecification.cs" />
+    <Compile Include="Features\HookSpecification.cs" />
+    <Compile Include="Features\CategorySpecification.cs" />
+    <Compile Include="Features\ActivitySpecification.cs" />
+    <Compile Include="Features\CommentSpecification.cs" />
+    <Compile Include="Features\LogSpecification.cs" />
+    <Compile Include="Features\PendingSpecification.cs" />
+    <Compile Include="Features\IgnoredSpecification.cs" />
+    <Compile Include="Features\ContextSpecification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +71,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

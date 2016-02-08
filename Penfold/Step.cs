@@ -10,11 +10,13 @@ namespace Penfold
         public Context Context { get; set; }
         public string Title { get; set; }
         public Action Action { get; set; }
+        public string Format { get; set; }
         public abstract bool Executed { get; }
 
         public override string ToString()
         {
-            return Title;
+            var format = Format ?? "{0}";
+            return string.Format(format, Title);
         }
     }
 }
