@@ -11,3 +11,4 @@ build:
   verbosity: minimal
 after_build:
   - nunit-console "Tests\\bin\\Debug\\Tests.dll" /nodots
+test: off
