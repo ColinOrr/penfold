@@ -125,5 +125,23 @@ namespace Penfold
         {
             logger.WriteLine(message);
         }
+
+        /// <summary>
+        /// Executes the code an returns the exception raised, or null if the code succeeds.
+        /// </summary>
+        public Exception Catch(Action code)
+        {
+            return Catch<Exception>(code);
+        }
+
+        /// <summary>
+        /// Executes the code an returns the exception raised, or null if the code succeeds.
+        /// </summary>
+        public TException Catch<TException>(Action code) where TException : Exception
+        {
+            try { code(); }
+            catch (TException e) { return e; }
+            return null;
+        }
     }
 }
