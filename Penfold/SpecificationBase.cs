@@ -68,11 +68,15 @@ namespace Penfold
         /// </summary>
         public void Execute()
         {
+            var errors = new List<Exception>();
+
             foreach (var test in Tests)
             {
                 try { Execute(test.Arguments.Cast<Assertion>().Single()); }
-                catch { }
+                catch (Exception e) { errors.Add(e); }
             }
+
+            if (errors.Any()) throw new AggregateException(errors.ToArray());
         }
 
         /// <summary>

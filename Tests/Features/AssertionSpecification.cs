@@ -45,12 +45,12 @@ namespace Tests.Features
                         specification.Execute();
                     };
 
-                    it["runs the code in both assertions"] = () =>
+                    it["runs the code in each assertion"] = () =>
                     {
                         executed.ShouldEqual(2);
                     };
 
-                    it["writes both assertions to the logger"] = () =>
+                    it["writes each assertion to the logger"] = () =>
                     {
                         specification.Logger.ToString().ShouldContain("does something");
                         specification.Logger.ToString().ShouldContain("does something else");
@@ -60,16 +60,22 @@ namespace Tests.Features
                 context["with a failing assertion"] = () =>
                 {
                     var specification = new Specification { Logger = new StringWriter() };
+                    AggregateException exception = null;
 
                     before = () =>
                     {
                         specification.it["explodes"] = () => { throw new ArithmeticException(); };
-                        Catch<ArithmeticException>(() => specification.Execute());
+                        exception = Catch<AggregateException>(() => specification.Execute());
                     };
 
                     it["writes the assertion to the logger before bombing out"] = () =>
                     {
                         specification.Logger.ToString().ShouldContain("explodes");
+                    };
+
+                    it["throws the exception"] = () =>
+                    {
+                        exception.InnerExceptions[0].ShouldBeType<ArithmeticException>();
                     };
                 };
             };
