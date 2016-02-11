@@ -60,7 +60,7 @@ namespace Tests.Features
                 };
             };
 
-            describe["Authoring a specification"] = () =>
+            describe["Writing a specification"] = () =>
             {
                 context["with a pending context"] = () =>
                 {

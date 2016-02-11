@@ -89,7 +89,7 @@ namespace Tests.Features
 
                     before = () =>
                     {
-                        specification.@ignore =
+                        specification.x =
                         specification.describe["something"] = () =>
                         {
                             specification.When["I do an activity"] = () => executed = true;

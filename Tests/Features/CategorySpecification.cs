@@ -8,7 +8,9 @@ namespace Tests.Features
         {
             describe["Writing a specification"] = () =>
             {
-                context["with categorised assertions"] = null;
+                context["with a categorised assertion"] = null;
+                context["with a categorised context"] = null;
+                context["with multiple categories"] = null;
             };
         }
     }
