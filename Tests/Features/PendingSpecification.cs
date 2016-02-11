@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
 using Penfold;
+using Should;
 using System;
 using System.IO;
 using System.Linq;
-using Should;
 
 namespace Tests.Features
 {
@@ -56,6 +56,24 @@ namespace Tests.Features
                     it["logs that the activity is pending"] = () =>
                     {
                         specification.Logger.ToString().ShouldContain("When it has a pending assertion [PENDING]");
+                    };
+                };
+            };
+
+            describe["Authoring a specification"] = () =>
+            {
+                context["with a pending context"] = () =>
+                {
+                    var specification = new Specification();
+
+                    before = () =>
+                    {
+                        specification.describe["pending context"] = null;
+                    };
+
+                    it["contains no tests"] = () =>
+                    {
+                        specification.Tests.ShouldBeEmpty();
                     };
                 };
             };

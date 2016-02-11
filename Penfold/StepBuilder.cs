@@ -32,7 +32,7 @@ namespace Penfold
 
                 // Execute child contexts to gather their steps
                 var context = step as Context;
-                if (context != null)
+                if (context != null && context.Action != null)
                 {
                     var original = specification.Context;
 

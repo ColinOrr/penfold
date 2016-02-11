@@ -4,6 +4,12 @@ namespace Tests.Features
 {
     public class CategorySpecification : Specification
     {
-        // TODO
+        public CategorySpecification()
+        {
+            describe["Writing a specification"] = () =>
+            {
+                context["with categorised assertions"] = null;
+            };
+        }
     }
 }

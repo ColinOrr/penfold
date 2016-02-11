@@ -1,8 +1,8 @@
-﻿using Penfold;
-using System.IO;
+﻿using NUnit.Framework;
+using Penfold;
 using Should;
-using NUnit.Framework;
 using System;
+using System.IO;
 using System.Linq;
 
 namespace Tests.Features
