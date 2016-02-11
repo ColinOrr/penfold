@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Penfold
 {
@@ -20,6 +21,10 @@ namespace Penfold
         public StepBuilder<Activity> Given { get; private set; }
         public StepBuilder<Activity> When { get; private set; }
         public StepBuilder<Assertion> Then { get; private set; }
+
+        // Ignores
+        public Action x { set { Context.Steps.Last().Ignored = true; } }
+        public Action @ignore { set { Context.Steps.Last().Ignored = true; } }
 
         public Specification()
         {

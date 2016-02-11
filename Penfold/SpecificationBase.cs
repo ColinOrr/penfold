@@ -92,42 +92,27 @@ namespace Penfold
                 // Run through the previous unexecuted contexts and activities
                 foreach (var step in plan.Before(test).Where(s => !s.Executed))
                 {
-                    if (step is Context) log(step);
+                    if (step is Context)
+                    {
+                        log(step);
+                        if (step.Ignored) ((Context)step).Steps.ForEach(s => s.Ignored = true);
+                    }
                     else if (step is Activity)
                     {
                         log(step);
-                        step.Action();
+                        if (!step.Ignored) step.Action();
                     }
                 }
 
-                // Execute the test
                 log(test);
+                if (test.Ignored) Assert.Ignore();
+
+                // Execute the test
                 test.Action();
                 test.Status = TestStatus.Passed;
             }
-            catch
-            {
-                test.Status = TestStatus.Failed;
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Logs the title of a specified test.
-        /// </summary>
-        public void log(Step step)
-        {
-            if (step.ToString().IsEmpty()) return;
-            logger.Indent = step.Ancestors().Count(a => a.ToString().IsNotEmpty());
-            logger.WriteLine(step);
-        }
-
-        /// <summary>
-        /// Logs the specified message to the test output.
-        /// </summary>
-        public void log(object message)
-        {
-            logger.WriteLine(message);
+            catch (IgnoreException) { test.Status = TestStatus.Skipped; throw; }
+            catch                   { test.Status = TestStatus.Failed;  throw; }
         }
 
         /// <summary>
@@ -147,5 +132,22 @@ namespace Penfold
             catch (TException e) { return e; }
             return null;
         }
+
+        #region Helpers
+
+        /// <summary>
+        /// Logs the title of a specified test.
+        /// </summary>
+        private void log(Step step)
+        {
+            if (step.ToString().IsEmpty()) return;
+            logger.Indent = step.Ancestors().Count(a => a.ToString().IsNotEmpty());
+
+            var status = "";
+            if (step.Ignored) status = " [IGNORED]";
+            logger.WriteLine(step + status);
+        }
+
+        #endregion
     }
 }

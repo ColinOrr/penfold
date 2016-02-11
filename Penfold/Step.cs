@@ -11,6 +11,7 @@ namespace Penfold
         public string Title { get; set; }
         public Action Action { get; set; }
         public string Format { get; set; }
+        public bool Ignored { get; set; }
         public abstract bool Executed { get; }
 
         public override string ToString()

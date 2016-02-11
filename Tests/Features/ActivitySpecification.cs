@@ -54,7 +54,7 @@ namespace Tests.Features
                         specification.Logger.ToString().ShouldContain("An explosion");
                     };
 
-                    it["skips the following activities and assertions"] = () =>
+                    it["skips the subsequent activities and assertions"] = () =>
                     {
                         executed.ShouldEqual(0);
                     };
