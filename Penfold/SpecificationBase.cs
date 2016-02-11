@@ -56,10 +56,11 @@ namespace Penfold
         protected SpecificationBase()
         {
             Logger = Console.Out;
-            
+
             Context = new Context
             {
                 Title = this.GetType().Name,
+                Action = () => { },
             };
         }
 
@@ -100,19 +101,21 @@ namespace Penfold
                     else if (step is Activity)
                     {
                         log(step);
-                        if (!step.Ignored) step.Action();
+                        if (!step.Ignored && step.Action != null) step.Action();
                     }
                 }
 
                 log(test);
                 if (test.Ignored) Assert.Ignore();
+                if (test.Action == null) Assert.Inconclusive();
 
                 // Execute the test
                 test.Action();
                 test.Status = TestStatus.Passed;
             }
-            catch (IgnoreException) { test.Status = TestStatus.Skipped; throw; }
-            catch                   { test.Status = TestStatus.Failed;  throw; }
+            catch (IgnoreException)       { test.Status = TestStatus.Skipped;      throw; }
+            catch (InconclusiveException) { test.Status = TestStatus.Inconclusive; throw; }
+            catch                         { test.Status = TestStatus.Failed;       throw; }
         }
 
         /// <summary>
@@ -145,6 +148,7 @@ namespace Penfold
 
             var status = "";
             if (step.Ignored) status = " [IGNORED]";
+            else if (step.Action == null) status = " [PENDING]";
             logger.WriteLine(step + status);
         }
 
