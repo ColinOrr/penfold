@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Activity.cs" />
     <Compile Include="Assertion.cs" />
+    <Compile Include="CategoryBuilder.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

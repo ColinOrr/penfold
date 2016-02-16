@@ -22,9 +22,10 @@ namespace Penfold
         public StepBuilder<Activity> When { get; private set; }
         public StepBuilder<Assertion> Then { get; private set; }
 
-        // Ignores
+        // Ignores & Categories
         public Action x { set { Context.Steps.Last().Ignored = true; } }
         public Action @ignore { set { Context.Steps.Last().Ignored = true; } }
+        public CategoryBuilder @_ { get; private set; }
 
         public Specification()
         {
@@ -36,6 +37,8 @@ namespace Penfold
             Given = new StepBuilder<Activity>(this, "Given {0}");
             When = new StepBuilder<Activity>(this, "When {0}");
             Then = new StepBuilder<Assertion>(this, "Then {0}");
+
+            @_ = new CategoryBuilder(this);
         }
     }
 }

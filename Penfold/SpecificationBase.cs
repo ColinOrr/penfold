@@ -42,11 +42,18 @@ namespace Penfold
         {
             get
             {
-                return
-                    from step in Context.Flatten().OfType<Assertion>()
-                    select new TestCaseData(step)
+                foreach (var step in Context.Flatten().OfType<Assertion>())
+                {
+                    var test = new TestCaseData(step)
                         .SetName(step.Title)
                         .SetCategory(string.Join(" · ", step.Ancestors()));
+
+                    step.Categories
+                        .Union(step.Ancestors().SelectMany(c => c.Categories))
+                        .ToList().ForEach(c => test.SetCategory(c));
+
+                    yield return test;
+                }
             }
         }
 
