@@ -1,6 +1,6 @@
 ﻿using Penfold;
-using System.Linq;
 using Should;
+using System.Linq;
 
 namespace Tests.Features
 {

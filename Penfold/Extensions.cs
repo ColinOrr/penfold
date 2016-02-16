@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Penfold
 {
@@ -62,6 +64,21 @@ namespace Penfold
             {
                 if (found) yield return step;
                 else if (step == current) found = true;
+            }
+        }
+
+        /// <summary>
+        /// Executes any setup steps for the specified step.
+        /// </summary>
+        public static void ExecuteSetupSteps(this Step step)
+        {
+            if (step.Context == null || step.Ignored || step.Action == null) return;
+
+            foreach (var setup in step.Context.Steps.OfType<Setup>()) 
+            {
+                if (setup.Ignored || setup.Action == null) continue;
+
+                setup.Action();
             }
         }
 

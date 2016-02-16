@@ -103,11 +103,13 @@ namespace Penfold
                     if (step is Context)
                     {
                         log(step);
+                        step.ExecuteSetupSteps();
                         if (step.Ignored) ((Context)step).Steps.ForEach(s => s.Ignored = true);
                     }
                     else if (step is Activity)
                     {
                         log(step);
+                        step.ExecuteSetupSteps();
                         if (!step.Ignored && step.Action != null) step.Action();
                     }
                 }
@@ -117,6 +119,7 @@ namespace Penfold
                 if (test.Action == null) Assert.Inconclusive();
 
                 // Execute the test
+                test.ExecuteSetupSteps();
                 test.Action();
                 test.Status = TestStatus.Passed;
             }

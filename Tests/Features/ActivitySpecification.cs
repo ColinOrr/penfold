@@ -1,7 +1,7 @@
 ﻿using Penfold;
-using System.IO;
 using Should;
 using System;
+using System.IO;
 
 namespace Tests.Features
 {

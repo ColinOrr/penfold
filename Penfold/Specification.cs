@@ -16,11 +16,15 @@ namespace Penfold
         public Action before { set { Context.Add<Activity>(value); } }
         public Action after { set { Context.Add<Activity>(value); } }
 
+        public Action before_each { set { Context.Add<Setup>(value); } }
+
         // Gherkin Keywords
         public StepBuilder<Context> Scenario { get; private set; }
         public StepBuilder<Activity> Given { get; private set; }
         public StepBuilder<Activity> When { get; private set; }
         public StepBuilder<Assertion> Then { get; private set; }
+
+        public Action Background { set { Context.Add<Setup>(value); } }
 
         // Ignores & Categories
         public Action x { set { Context.Steps.Last().Ignored = true; } }
