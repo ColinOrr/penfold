@@ -32,6 +32,7 @@ namespace Tests.Features
                     };
                 };
 
+                @ignore =
                 context["with a multi-line comment"] = () =>
                 {
                     var specification = new Specification { Logger = new StringWriter() };
