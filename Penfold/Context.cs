@@ -10,6 +10,7 @@ namespace Penfold
     /// </summary>
     public class Context : Step
     {
+        public SpecificationBase Specification { get; set; }
         public List<Step> Steps { get; private set; }
 
         public override bool Executed

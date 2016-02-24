@@ -22,10 +22,10 @@ namespace Penfold
         public TextWriter Logger
         {
             get { return logger.InnerWriter; }
-            set 
+            set
             {
                 value = value ?? new StringWriter();
-                logger = new IndentedTextWriter(value, "  "); 
+                logger = new IndentedTextWriter(value, "  ");
             }
         }
 
@@ -66,8 +66,9 @@ namespace Penfold
 
             Context = new Context
             {
-                Title = this.GetType().Name,
-                Action = () => { },
+                Specification = this,
+                Title         = this.GetType().Name,
+                Action        = () => { },
             };
         }
 
@@ -96,24 +97,25 @@ namespace Penfold
             try
             {
                 var plan = test.Ancestors().First().Flatten();
+                this.logger = test.Ancestors().First().Specification.logger;
 
                 // Run through the previous unexecuted contexts and activities
                 foreach (var step in plan.Before(test).Where(s => !s.Executed))
                 {
                     if (step is Context)
                     {
-                        log(step);
+                        logStep(step);
                         step.ExecuteSetupSteps();
                         if (step.Ignored) ((Context)step).Steps.ForEach(s => s.Ignored = true);
                     }
                     else if (step is Activity)
                     {
-                        log(step);
+                        logStep(step);
                         if (!step.Ignored && step.Action != null) step.Action();
                     }
                 }
 
-                log(test);
+                logStep(test);
                 if (test.Ignored) Assert.Ignore();
                 if (test.Action == null) Assert.Inconclusive();
 
@@ -145,12 +147,30 @@ namespace Penfold
             return null;
         }
 
+        /// <summary>
+        /// Logs a message indented appropriately within the current step.
+        /// </summary>
+        public T log<T>(T message)
+        {
+            if (message != null)
+            {
+                logger.Indent++;
+                foreach (var line in message.ToString().Split(new[] { Environment.NewLine }, StringSplitOptions.None))
+                {
+                    logger.WriteLine(line);
+                }
+                logger.Indent--;
+            }
+
+            return message;
+        }
+
         #region Helpers
 
         /// <summary>
         /// Logs the title of a specified test.
         /// </summary>
-        private void log(Step step)
+        private void logStep(Step step)
         {
             if (step.ToString().IsEmpty()) return;
             logger.Indent = step.Ancestors().Count(a => a.ToString().IsNotEmpty());
