@@ -44,5 +44,13 @@ namespace Penfold
             var step = new T { Action = action };
             this.Add(step);
         }
+
+        /// <summary>
+        /// Adds a comment to the context.
+        /// </summary>
+        public void AddComment(string comment)
+        {
+            Add<Activity>(() => { Specification.log(comment.Unindent()); });
+        }
     }
 }

@@ -26,10 +26,11 @@ namespace Penfold
 
         public Action Background { set { Context.Add<Setup>(value); } }
 
-        // Ignores & Categories
+        // Ignores, Categories & Comments
         public Action x { set { Context.Steps.Last().Ignored = true; } }
         public Action @ignore { set { Context.Steps.Last().Ignored = true; } }
         public CategoryBuilder @_ { get; private set; }
+        public string comment { set { Context.AddComment(value); } }
 
         public Specification()
         {

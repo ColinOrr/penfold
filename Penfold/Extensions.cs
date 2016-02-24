@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Penfold
 {
@@ -96,6 +97,20 @@ namespace Penfold
         public static bool IsNotEmpty(this string value)
         {
             return !value.IsEmpty();
+        }
+
+        /// <summary>
+        /// Unindents a multi-line string.
+        /// </summary>
+        public static string Unindent(this string value)
+        {
+            if (value == null) return value;
+
+            value = value.TrimStart('\r', '\n').TrimEnd();
+            var indent = Regex.Match(value, @"^\s*").Value;
+            value = Regex.Replace(value, "^" + indent, "", RegexOptions.Multiline);
+
+            return value;
         }
     }
 }

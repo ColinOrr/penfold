@@ -34,6 +34,7 @@ namespace Penfold
                 var context = step as Context;
                 if (context != null && context.Action != null)
                 {
+                    context.Specification = specification;
                     var original = specification.Context;
 
                     specification.Context = context;

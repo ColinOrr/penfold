@@ -39,7 +39,7 @@ namespace Tests.Features
                     };
                 };
 
-                context["with a multi line log message"] = () =>
+                context["with a multi-line log message"] = () =>
                 {
                     var specification = new Specification { Logger = new StringWriter() };
                     var result = "";
