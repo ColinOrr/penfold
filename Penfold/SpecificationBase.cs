@@ -109,7 +109,6 @@ namespace Penfold
                     else if (step is Activity)
                     {
                         log(step);
-                        step.ExecuteSetupSteps();
                         if (!step.Ignored && step.Action != null) step.Action();
                     }
                 }

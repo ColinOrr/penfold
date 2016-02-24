@@ -24,9 +24,9 @@ namespace Tests.Features
                         specification.Execute();
                     };
 
-                    it["runs the setup before each step"] = () =>
+                    it["runs the setup before each assertion"] = () =>
                     {
-                        executed.ShouldEqual(3);
+                        executed.ShouldEqual(2);
                     };
                 };
 
@@ -55,27 +55,25 @@ namespace Tests.Features
                 context["with a failing setup step"] = () =>
                 {
                     var specification = new Specification { Logger = null };
-                    var executed = 0;
+                    var executed = false;
                     AggregateException exception = null;
 
                     before = () =>
                     {
-                        specification.Background = () => { throw new ArithmeticException(); };
-                        specification.When["I do something"] = () => executed++;
-                        specification.Then["it says done"] = () => executed++;
+                        specification.before_each = () => { throw new ArithmeticException(); };
+                        specification.it["does something"] = () => executed = true;
                         exception = Catch<AggregateException>(() => specification.Execute());
                     };
 
-                    it["skips the subsequent activities and assertions"] = () =>
+                    it["skips the subsequent assertion"] = () =>
                     {
-                        executed.ShouldEqual(0);
+                        executed.ShouldBeFalse();
                     };
 
                     it["throws the exception"] = () =>
                     {
                         exception.InnerExceptions[0].ShouldBeType<ArithmeticException>();
                     };
-
                 };
             };
         }
