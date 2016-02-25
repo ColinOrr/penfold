@@ -155,7 +155,7 @@ namespace Penfold
             if (message != null)
             {
                 logger.Indent++;
-                foreach (var line in message.ToString().Split(new[] { Environment.NewLine }, StringSplitOptions.None))
+                foreach (var line in message.ToString().Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     logger.WriteLine(line);
                 }
