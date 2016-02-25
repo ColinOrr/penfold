@@ -34,12 +34,6 @@ namespace Tests.Features
 
                 context["with a multi-line comment"] = () =>
                 {
-                    comment = @"
-                        as a programmer
-                        I want to write specs
-                        in order to improve my code quality
-                    ";
-
                     var specification = new Specification { Logger = new StringWriter() };
 
                     before = () =>
