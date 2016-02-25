@@ -1,5 +1,5 @@
-﻿using Penfold;
-using Should;
+﻿using Machine.Specifications;
+using Penfold;
 using System;
 using System.IO;
 
@@ -32,7 +32,6 @@ namespace Tests.Features
                     };
                 };
 
-                @ignore =
                 context["with a multi-line comment"] = () =>
                 {
                     var specification = new Specification { Logger = new StringWriter() };

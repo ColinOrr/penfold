@@ -1,5 +1,5 @@
-﻿using Penfold;
-using Should;
+﻿using Machine.Specifications;
+using Penfold;
 using System.Linq;
 
 namespace Tests.Features

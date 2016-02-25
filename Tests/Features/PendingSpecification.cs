@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+﻿using Machine.Specifications;
+using NUnit.Framework;
 using Penfold;
-using Should;
 using System;
 using System.IO;
 using System.Linq;
@@ -26,7 +26,7 @@ namespace Tests.Features
 
                     it["throws an inconclusive exception to the test runner"] = () =>
                     {
-                        exception.InnerExceptions.Single().ShouldBeType<InconclusiveException>();
+                        exception.InnerExceptions.Single().ShouldBeOfExactType<InconclusiveException>();
                     };
 
                     it["logs that the assertion is pending"] = () =>

@@ -1,5 +1,5 @@
-﻿using Penfold;
-using Should;
+﻿using Machine.Specifications;
+using Penfold;
 using System;
 using System.IO;
 
@@ -75,7 +75,7 @@ namespace Tests.Features
 
                     it["throws the exception"] = () =>
                     {
-                        exception.InnerExceptions[0].ShouldBeType<ArithmeticException>();
+                        exception.InnerExceptions[0].ShouldBeOfExactType<ArithmeticException>();
                     };
                 };
             };

@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+﻿using Machine.Specifications;
+using NUnit.Framework;
 using Penfold;
-using Should;
 using System;
 using System.IO;
 using System.Linq;
@@ -36,7 +36,7 @@ namespace Tests.Features
 
                     it["throws an ignored exception to the test runner"] = () =>
                     {
-                        exception.InnerExceptions.Single().ShouldBeType<IgnoreException>();
+                        exception.InnerExceptions.Single().ShouldBeOfExactType<IgnoreException>();
                     };
 
                     it["executes the code in subsequent assertions"] = () =>
@@ -121,7 +121,7 @@ namespace Tests.Features
 
                     it["throws an ignored exception to the test runner"] = () =>
                     {
-                        exception.InnerExceptions.Single().ShouldBeType<IgnoreException>();
+                        exception.InnerExceptions.Single().ShouldBeOfExactType<IgnoreException>();
                     };
                 };
             };

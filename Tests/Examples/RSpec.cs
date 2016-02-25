@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+﻿using Machine.Specifications;
+using NUnit.Framework;
 using Penfold;
-using Should;
 
 namespace Tests.Examples
 {
