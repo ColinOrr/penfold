@@ -36,7 +36,7 @@ namespace Penfold
 
         /// <summary>
         /// Gets the asssertions to be tested.
-        /// Called by NUnit to identify the sequence of tests to be passed to <see cref="Execute(Assertion)"/>.
+        /// Called by NUnit to identify the sequence of tests to be passed to <see cref="ExecuteTest(Assertion)"/>.
         /// </summary>
         public IEnumerable<TestCaseData> Tests
         {
@@ -81,7 +81,7 @@ namespace Penfold
 
             foreach (var test in Tests)
             {
-                try { Execute(test.Arguments.Cast<Assertion>().Single()); }
+                try { ExecuteTest(test.Arguments.Cast<Assertion>().Single()); }
                 catch (Exception e) { errors.Add(e); }
             }
 
@@ -92,7 +92,7 @@ namespace Penfold
         /// Executes an individual test.
         /// </summary>
         [Test, TestCaseSource("Tests")]
-        public void Execute(Assertion test)
+        public void ExecuteTest(Assertion test)
         {
             try
             {
