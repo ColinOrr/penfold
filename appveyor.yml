@@ -10,6 +10,5 @@ before_build:
 build:
   verbosity: minimal
 after_build:
-  - set PATH=C:\Tools\NUnit3\bin;%PATH%
-  - nunit-console "Tests\\bin\\Debug\\Tests.dll" /nodots
+  - C:\Tools\NUnit3\bin\nunit-console "Tests\\bin\\Debug\\Tests.dll" /nodots
 test: off
