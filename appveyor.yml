@@ -10,5 +10,5 @@ before_build:
 build:
   verbosity: minimal
 after_build:
-  - C:\Tools\NUnit3\bin\nunit-console "Tests\\bin\\Debug\\Tests.dll" /nodots
+  - nunit3-console "Tests\\bin\\Debug\\Tests.dll" /nodots
 test: off
