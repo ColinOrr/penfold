@@ -13,7 +13,7 @@ namespace Tests.Features
             {
                 context["with a single assertion"] = () =>
                 {
-                    var specification = new Specification { Logger = new StringWriter() };
+                    var specification = new MySpecification { Logger = new StringWriter() };
                     var executed = false;
 
                     before = () =>
@@ -35,7 +35,7 @@ namespace Tests.Features
 
                 context["with multiple assertions"] = () =>
                 {
-                    var specification = new Specification { Logger = new StringWriter() };
+                    var specification = new MySpecification { Logger = new StringWriter() };
                     var executed = 0;
 
                     before = () =>
@@ -59,7 +59,7 @@ namespace Tests.Features
 
                 context["with a failing assertion"] = () =>
                 {
-                    var specification = new Specification { Logger = new StringWriter() };
+                    var specification = new MySpecification { Logger = new StringWriter() };
                     AggregateException exception = null;
 
                     before = () =>

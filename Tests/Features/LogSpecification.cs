@@ -13,7 +13,7 @@ namespace Tests.Features
             {
                 context["with a single line log message"] = () =>
                 {
-                    var specification = new Specification { Logger = new StringWriter() };
+                    var specification = new MySpecification { Logger = new StringWriter() };
                     var result = "";
 
                     before = () =>
@@ -41,7 +41,7 @@ namespace Tests.Features
 
                 context["with a multi-line log message"] = () =>
                 {
-                    var specification = new Specification { Logger = new StringWriter() };
+                    var specification = new MySpecification { Logger = new StringWriter() };
                     var result = "";
 
                     before = () =>

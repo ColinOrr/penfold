@@ -13,7 +13,7 @@ namespace Tests.Features
             {
                 context["with a single line comment"] = () =>
                 {
-                    var specification = new Specification { Logger = new StringWriter() };
+                    var specification = new MySpecification { Logger = new StringWriter() };
                     
                     before = () =>
                     {
@@ -34,7 +34,7 @@ namespace Tests.Features
 
                 context["with a multi-line comment"] = () =>
                 {
-                    var specification = new Specification { Logger = new StringWriter() };
+                    var specification = new MySpecification { Logger = new StringWriter() };
 
                     before = () =>
                     {

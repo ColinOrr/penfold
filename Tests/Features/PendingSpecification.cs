@@ -15,7 +15,7 @@ namespace Tests.Features
             {
                 context["with a pending assertion"] = () =>
                 {
-                    var specification = new Specification { Logger = new StringWriter() };
+                    var specification = new MySpecification { Logger = new StringWriter() };
                     AggregateException exception = null;
 
                     before = () =>
@@ -37,7 +37,7 @@ namespace Tests.Features
 
                 context["with a pending activity"] = () =>
                 {
-                    var specification = new Specification { Logger = new StringWriter() };
+                    var specification = new MySpecification { Logger = new StringWriter() };
                     var executed = false;
                     AggregateException exception = null;
 
@@ -64,7 +64,7 @@ namespace Tests.Features
             {
                 context["with a pending context"] = () =>
                 {
-                    var specification = new Specification();
+                    var specification = new MySpecification();
 
                     before = () =>
                     {

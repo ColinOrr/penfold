@@ -1,4 +1,5 @@
 ﻿using Machine.Specifications;
+using NUnit.Framework.Internal;
 using Penfold;
 using System.Linq;
 
@@ -12,7 +13,7 @@ namespace Tests.Features
             {
                 context["with a categorised assertion"] = () =>
                 {
-                    var specification = new Specification();
+                    var specification = new MySpecification();
 
                     before = () =>
                     {
@@ -22,13 +23,13 @@ namespace Tests.Features
 
                     it["adds the category to the test definition"] = () =>
                     {
-                        specification.Tests.Single().Categories.Cast<string>().ShouldContain("category");
+                        specification.Tests.Single().Properties[PropertyNames.Category].ShouldContain("category");
                     };
                 };
 
                 context["with a categorised context"] = () =>
                 {
-                    var specification = new Specification();
+                    var specification = new MySpecification();
 
                     before = () =>
                     {
@@ -41,13 +42,13 @@ namespace Tests.Features
 
                     it["adds the category to the test definition"] = () =>
                     {
-                        specification.Tests.Single().Categories.Cast<string>().ShouldContain("category");
+                        specification.Tests.Single().Properties[PropertyNames.Category].ShouldContain("category");
                     };
                 };
 
                 context["with multiple categories"] = () =>
                 {
-                    var specification = new Specification();
+                    var specification = new MySpecification();
 
                     before = () =>
                     {
@@ -61,15 +62,15 @@ namespace Tests.Features
 
                     it["adds each category to the test definition"] = () =>
                     {
-                        specification.Tests.Single().Categories.Cast<string>().ShouldContain("category 1");
-                        specification.Tests.Single().Categories.Cast<string>().ShouldContain("category 2");
-                        specification.Tests.Single().Categories.Cast<string>().ShouldContain("category 3");
+                        specification.Tests.Single().Properties[PropertyNames.Category].ShouldContain("category 1");
+                        specification.Tests.Single().Properties[PropertyNames.Category].ShouldContain("category 2");
+                        specification.Tests.Single().Properties[PropertyNames.Category].ShouldContain("category 3");
                     };
 
 
                     it["de-duplicates the categories"] = () =>
                     {
-                        specification.Tests.Single().Categories.Cast<string>().Count(s => s == "category 2").ShouldEqual(1);
+                        specification.Tests.Single().Properties[PropertyNames.Category].Cast<string>().Count(s => s == "category 2").ShouldEqual(1);
                     };
                 };
             };

@@ -44,8 +44,8 @@
       <HintPath>..\packages\Machine.Specifications.Should.0.8.0\lib\net45\Machine.Specifications.Should.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -59,15 +59,16 @@
   <ItemGroup>
     <Compile Include="Examples\RSpec.cs" />
     <Compile Include="Examples\Calculator.cs" />
-    <Compile Include="Features\AssertionSpecification.cs" />
-    <Compile Include="Features\HookSpecification.cs" />
-    <Compile Include="Features\CategorySpecification.cs" />
     <Compile Include="Features\ActivitySpecification.cs" />
+    <Compile Include="Features\AssertionSpecification.cs" />
+    <Compile Include="Features\CategorySpecification.cs" />
     <Compile Include="Features\CommentSpecification.cs" />
-    <Compile Include="Features\LogSpecification.cs" />
-    <Compile Include="Features\PendingSpecification.cs" />
-    <Compile Include="Features\IgnoredSpecification.cs" />
     <Compile Include="Features\ContextSpecification.cs" />
+    <Compile Include="Features\HookSpecification.cs" />
+    <Compile Include="Features\IgnoredSpecification.cs" />
+    <Compile Include="Features\LogSpecification.cs" />
+    <Compile Include="Features\MySpecification.cs" />
+    <Compile Include="Features\PendingSpecification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

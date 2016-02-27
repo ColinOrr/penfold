@@ -13,7 +13,7 @@ namespace Tests.Features
             {
                 context["with multiple activities"] = () =>
                 {
-                    var specification = new Specification { Logger = new StringWriter() };
+                    var specification = new MySpecification { Logger = new StringWriter() };
                     var executed = 0;
 
                     before = () =>
@@ -38,7 +38,7 @@ namespace Tests.Features
 
                 context["with a failing activity"] = () => 
                 {
-                    var specification = new Specification { Logger = new StringWriter() };
+                    var specification = new MySpecification { Logger = new StringWriter() };
                     var executed = 0;
 
                     before = () =>

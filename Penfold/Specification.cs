@@ -6,7 +6,7 @@ namespace Penfold
     /// <summary>
     /// Defines the standard Penfold specification language.
     /// </summary>
-    public class Specification : SpecificationBase
+    public abstract class Specification : SpecificationBase
     {
         // RSpec Keywords
         public StepBuilder<Context> describe { get; private set; }
@@ -32,7 +32,7 @@ namespace Penfold
         public CategoryBuilder @_ { get; private set; }
         public string comment { set { Context.AddComment(value); } }
 
-        public Specification()
+        protected Specification()
         {
             describe = new StepBuilder<Context>(this);
             context = new StepBuilder<Context>(this);

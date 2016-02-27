@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
@@ -91,7 +92,7 @@ namespace Penfold
         /// <summary>
         /// Executes an individual test.
         /// </summary>
-        [Test, TestCaseSource("Tests")]
+        [Test, SpecificationSource]
         public void ExecuteTest(Assertion test)
         {
             try

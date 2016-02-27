@@ -13,7 +13,7 @@ namespace Tests.Features
             {
                 context["with a single context"] = () =>
                 {
-                    var specification = new Specification { Logger = new StringWriter() };
+                    var specification = new MySpecification { Logger = new StringWriter() };
 
                     before = () =>
                     {
@@ -37,7 +37,7 @@ namespace Tests.Features
 
                 context["with nested contexts"] = () =>
                 {
-                    var specification = new Specification { Logger = new StringWriter() };
+                    var specification = new MySpecification { Logger = new StringWriter() };
 
                     before = () =>
                     {

@@ -15,7 +15,7 @@ namespace Tests.Features
             {
                 context["with an ignored assertion"] = () =>
                 {
-                    var specification = new Specification { Logger = new StringWriter() };
+                    var specification = new MySpecification { Logger = new StringWriter() };
                     var executedA = false;
                     var executedB = false;
                     AggregateException exception = null;
@@ -52,7 +52,7 @@ namespace Tests.Features
 
                 context["with an ignored activity"] = () =>
                 {
-                    var specification = new Specification { Logger = new StringWriter() };
+                    var specification = new MySpecification { Logger = new StringWriter() };
                     var executedA = false;
                     var executedB = false;
 
@@ -83,7 +83,7 @@ namespace Tests.Features
 
                 context["with an ignored context"] = () =>
                 {
-                    var specification = new Specification { Logger = new StringWriter() };
+                    var specification = new MySpecification { Logger = new StringWriter() };
                     var executed = false;
                     AggregateException exception = null;
 

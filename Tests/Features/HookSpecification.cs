@@ -12,7 +12,7 @@ namespace Tests.Features
             {
                 context["with a setup step"] = () =>
                 {
-                    var specification = new Specification { Logger = null };
+                    var specification = new MySpecification { Logger = null };
                     var executed = 0;
 
                     before = () =>
@@ -32,7 +32,7 @@ namespace Tests.Features
 
                 context["with a setup step before a context"] = () =>
                 {
-                    var specification = new Specification { Logger = null };
+                    var specification = new MySpecification { Logger = null };
                     var executed = 0;
 
                     before = () =>
@@ -54,7 +54,7 @@ namespace Tests.Features
 
                 context["with a failing setup step"] = () =>
                 {
-                    var specification = new Specification { Logger = null };
+                    var specification = new MySpecification { Logger = null };
                     var executed = false;
                     AggregateException exception = null;
 
