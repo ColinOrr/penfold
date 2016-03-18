@@ -9,6 +9,7 @@ before_build:
   - nuget restore
 build:
   verbosity: minimal
+  publish_nuget: true
 after_build:
   - nunit3-console "Tests\\bin\\Debug\\Tests.dll"
 test: off
