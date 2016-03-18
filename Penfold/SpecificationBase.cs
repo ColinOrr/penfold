@@ -45,9 +45,10 @@ namespace Penfold
             {
                 foreach (var step in Context.Flatten().OfType<Assertion>())
                 {
+                    var path = string.Join(" · ", step.Ancestors().Skip(1));
+
                     var test = new TestCaseData(step)
-                        .SetName(step.Title)
-                        .SetCategory(string.Join(" · ", step.Ancestors()));
+                        .SetName(string.Join(" · ", path, step));
 
                     step.Categories
                         .Union(step.Ancestors().SelectMany(c => c.Categories))

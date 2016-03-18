@@ -14,8 +14,6 @@ namespace Penfold
         public StepBuilder<Assertion> it { get; private set; }
 
         public Action before { set { Context.Add<Activity>(value); } }
-        public Action after { set { Context.Add<Activity>(value); } }
-
         public Action before_each { set { Context.Add<Setup>(value); } }
 
         // Gherkin Keywords
