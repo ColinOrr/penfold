@@ -12,6 +12,8 @@ build:
 after_build:
   - nunit3-console "Tests\\bin\\Debug\\Tests.dll"
 test: off
+nuget:
+  project_feed: true
 deploy:
   provider: NuGet
   api_key:
