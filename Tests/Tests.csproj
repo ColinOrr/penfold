@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Examples\Gherkin.cs" />
     <Compile Include="Examples\RSpec.cs" />
     <Compile Include="Examples\Calculator.cs" />
     <Compile Include="Features\ActivitySpecification.cs" />
