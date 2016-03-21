@@ -19,6 +19,6 @@
     </references>
   </metadata>
   <files>
-    <file src="bin\Release\nunit.*" target="lib/net45" />
+    <file src="bin\Debug\nunit.*" target="lib/net45" />
   </files>
 </package>
