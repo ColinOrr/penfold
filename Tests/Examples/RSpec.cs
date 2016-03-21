@@ -25,9 +25,9 @@ namespace Tests.Examples
                         calculator.Total.ShouldEqual(5);
                     };
 
-                    it["sets the history to:"] = () =>
+                    it["sets the equation history to:"] = () =>
                     {
-                        log(calculator.History.ShouldEqual("2 + 3"));
+                        log(calculator.Equation.ShouldEqual("2 + 3"));
                     };
                 };
 
@@ -40,9 +40,9 @@ namespace Tests.Examples
                         calculator.Total.ShouldEqual(9);
                     };
 
-                    it["sets the history to:"] = () =>
+                    it["sets the equation history to:"] = () =>
                     {
-                        log(calculator.History.ShouldEqual("2 + 3 + 4"));
+                        log(calculator.Equation.ShouldEqual("2 + 3 + 4"));
                     };
                 };
             };
@@ -58,9 +58,9 @@ namespace Tests.Examples
                         calculator.Total.ShouldEqual(3);
                     };
 
-                    it["sets the history to:"] = () =>
+                    it["sets the equation history to:"] = () =>
                     {
-                        log(calculator.History.ShouldEqual("12 / 4"));
+                        log(calculator.Equation.ShouldEqual("12 / 4"));
                     };
                 };
 
