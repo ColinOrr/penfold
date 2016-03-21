@@ -44,8 +44,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TestDriven.Framework">
-      <HintPath>..\..\..\..\..\Program Files (x86)\TestDriven.NET 3\NUnit\2.6\TestDriven.Framework.dll</HintPath>
+    <Reference Include="TestDriven.Framework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=50ecb853f8c6b8d2">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Library\TestDriven.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
