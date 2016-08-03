@@ -19,6 +19,7 @@
     </references>
   </metadata>
   <files>
-    <file src="bin\Debug\nunit.*" target="lib/net45" />
+    <file src="..\packages\NUnitTDNet.3.4.1\tools\*" target="lib/net45" />
+    <file src="bin\Debug\nunit.framework.*" target="lib/net45" />
   </files>
 </package>
