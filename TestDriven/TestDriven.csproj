@@ -54,7 +54,6 @@
     <Compile Include="TestRunner.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="nunit.framework.dll.tdnet">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
