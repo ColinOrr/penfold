@@ -1,10 +1,10 @@
-﻿using NUnit.AddInRunner;
+﻿using NUnitTDNet.Adapter;
 using System.Reflection;
 using TestDriven.Framework;
 
 namespace Penfold.TestDriven
 {
-    public class TestRunner : NUnitTestRunner, ITestRunner
+    public class TestRunner : EngineTestRunner, ITestRunner
     {
         public new TestRunState RunMember(ITestListener testListener, Assembly assembly, MemberInfo member)
         {
