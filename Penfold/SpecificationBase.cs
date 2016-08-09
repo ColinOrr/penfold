@@ -167,6 +167,24 @@ namespace Penfold
             return message;
         }
 
+        /// <summary>
+        /// Override this method to add set up logic that will run before the 
+        /// specification starts.
+        /// </summary>
+        [OneTimeSetUp]
+        public virtual void BeforeSpecification()
+        {
+        }
+
+        /// <summary>
+        /// Override this method to add tear down logic that will run after the 
+        /// specification finishes.
+        /// </summary>
+        [OneTimeTearDown]
+        public virtual void AfterSpecification()
+        {
+        }
+
         #region Helpers
 
         /// <summary>
