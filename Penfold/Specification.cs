@@ -27,6 +27,7 @@ namespace Penfold
         // Ignores, Categories & Comments
         public Action x { set { Context.Steps.Last().Ignored = true; } }
         public Action @ignore { set { Context.Steps.Last().Ignored = true; } }
+        public Action @current { set { Context.Steps.Last().Categories.Add(".current"); } }
         public CategoryBuilder @_ { get; private set; }
         public string comment { set { Context.AddComment(value); } }
 

@@ -10,6 +10,10 @@ namespace Penfold.TestDriven
         {
             if (member.MemberType == MemberTypes.Constructor)
             {
+                var where  = "(cat == '.current')";
+                var result = this.Call<TestRunState>("run", testListener, assembly, where);
+                if (result != TestRunState.NoTests) return result;
+
                 return base.RunMember(testListener, assembly, member.DeclaringType);
             }
 
