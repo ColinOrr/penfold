@@ -45,7 +45,7 @@ namespace Penfold
             {
                 foreach (var step in Context.Flatten().OfType<Assertion>())
                 {
-                    var path = string.Join(" · ", step.Ancestors().Skip(1));
+                    var path = string.Join(" · ", step.Ancestors());
 
                     var test = new TestCaseData(step)
                         .SetName(string.Join(" · ", path, step));
