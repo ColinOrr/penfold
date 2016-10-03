@@ -39,7 +39,7 @@ namespace Penfold
         /// Gets the asssertions to be tested.
         /// Called by NUnit to identify the sequence of tests to be passed to <see cref="ExecuteTest(Assertion)"/>.
         /// </summary>
-        public IEnumerable<TestCaseData> Tests
+        public virtual IEnumerable<TestCaseData> Tests
         {
             get
             {
