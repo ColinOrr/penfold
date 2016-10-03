@@ -104,7 +104,7 @@ namespace Penfold
                 // Run through the previous unexecuted contexts and activities
                 foreach (var step in plan.Before(test).Where(s => !s.Executed))
                 {
-                    if (step is Context)
+                    if (step is Context && test.Ancestors().Contains(step))
                     {
                         logStep(step);
                         step.ExecuteSetupSteps();

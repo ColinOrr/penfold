@@ -79,6 +79,9 @@ namespace Tests.Features
 
                     before = () =>
                     {
+                        specification.before_each = () => setupCount++;
+                        specification.before = () => activityCount++;
+
                         specification.context["context A"] = () =>
                         {
                             specification.before_each = () => setupCount++;
@@ -95,12 +98,12 @@ namespace Tests.Features
 
                     it["doesn't execute setup steps in other contexts"] = () =>
                     {
-                        setupCount.ShouldEqual(0);
+                        setupCount.ShouldEqual(1);
                     };
 
                     it["doesn't execute activities in other contexts"] = () =>
                     {
-                        activityCount.ShouldEqual(0);
+                        activityCount.ShouldEqual(1);
                     };
                 };
             };
