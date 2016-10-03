@@ -110,7 +110,7 @@ namespace Penfold
                         step.ExecuteSetupSteps();
                         if (step.Ignored) ((Context)step).Steps.ForEach(s => s.Ignored = true);
                     }
-                    else if (step is Activity)
+                    else if (step is Activity && test.Ancestors().Contains(step.Context))
                     {
                         logStep(step);
                         if (!step.Ignored && step.Action != null) step.Action();

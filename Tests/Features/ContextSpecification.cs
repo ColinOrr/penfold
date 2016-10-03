@@ -68,6 +68,42 @@ namespace Tests.Features
                     };
                 };
             };
+
+            describe["Executing a single test"] = () =>
+            {
+                context["with multiple contexts"] = () =>
+                {
+                    var specification = new MySpecification { Logger = new StringWriter() };
+                    var setupCount    = 0;
+                    var activityCount = 0;
+
+                    before = () =>
+                    {
+                        specification.context["context A"] = () =>
+                        {
+                            specification.before_each = () => setupCount++;
+                            specification.before = () => activityCount++;
+                        };
+
+                        specification.context["context B"] = () =>
+                        {
+                            specification.it["assertion B1"] = () => { };
+                        };
+
+                        specification.Execute();
+                    };
+
+                    it["doesn't execute setup steps in other contexts"] = () =>
+                    {
+                        setupCount.ShouldEqual(0);
+                    };
+
+                    it["doesn't execute activities in other contexts"] = () =>
+                    {
+                        activityCount.ShouldEqual(0);
+                    };
+                };
+            };
         }
     }
 }
