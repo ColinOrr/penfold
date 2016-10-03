@@ -2,6 +2,7 @@
 using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
 using NUnit.Framework.Internal.Builders;
+using System;
 using System.Collections.Generic;
 
 namespace Penfold
@@ -21,12 +22,25 @@ namespace Penfold
         /// </summary>
         IEnumerable<TestMethod> ITestBuilder.BuildFrom(IMethodInfo method, Test suite)
         {
-            var specification = (SpecificationBase)method.TypeInfo.Construct(null);
+            var tests = new List<TestMethod>();
 
-            foreach (var test in specification.Tests)
+            try
             {
-                yield return builder.BuildTestMethod(method, suite, test);
+                var specification = (SpecificationBase)method.TypeInfo.Construct(null);
+
+                foreach (var test in specification.Tests)
+                {
+                    tests.Add(builder.BuildTestMethod(method, suite, test));
+                }
             }
+            catch
+            {
+                var test = new TestCaseData(new Assertion { Action = () => { } });
+                test.SetName(method.TypeInfo.Name);
+                tests.Add(builder.BuildTestMethod(method, suite, test));
+            }
+
+            return tests;
         }
     }
 }
