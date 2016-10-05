@@ -59,6 +59,31 @@ namespace Tests.Features
                         );
                     };
                 };
+
+                context["with a comment after an assertion"] = () =>
+                {
+                    var specification = new MySpecification { Logger = new StringWriter() };
+
+                    before = () =>
+                    {
+                        specification.comment = "comment before";
+                        specification.it["does something"] = () => { };
+                        specification.comment = "comment after";
+                        specification.it["does something else"] = () => { };
+                        specification.Execute();
+                    };
+
+                    it["writes the comment into the log with the correct indentation"] = () =>
+                    {
+                        specification.Logger.ToString().ShouldContain(
+                            "Specification" + Environment.NewLine +
+                            "  comment before" + Environment.NewLine +
+                            "  does something" + Environment.NewLine +
+                            "  comment after" + Environment.NewLine +
+                            "  does something else"
+                        );
+                    };
+                };
             };
         }
     }

@@ -192,8 +192,12 @@ namespace Penfold
         /// </summary>
         private void logStep(Step step)
         {
-            if (step.ToString().IsEmpty()) return;
             logger.Indent = step.Ancestors().Count(a => a.ToString().IsNotEmpty());
+            if (step.ToString().IsEmpty())
+            {
+                logger.Indent--;
+                return;
+            }
 
             var status = "";
             if (step.Ignored) status = " [IGNORED]";
