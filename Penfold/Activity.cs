@@ -13,7 +13,7 @@ namespace Penfold
         {
             get
             {
-                return Context.Steps.After(this).Any(s => s.Executed);
+                return Context.Steps.After(this).OfType<Assertion>().Any(s => s.Executed);
             }
         }
     }
