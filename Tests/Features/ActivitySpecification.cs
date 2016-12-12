@@ -36,6 +36,31 @@ namespace Tests.Features
                     };
                 };
 
+                context["with an activity before multiple contexts"] = () =>
+                {
+                    var specification = new MySpecification { Logger = new StringWriter() };
+                    var executed = 0;
+
+                    before = () =>
+                    {
+                        specification.before = () => executed++;
+                        specification.describe["first context"] = () =>
+                        {
+                            specification.it["does something"] = () => { };
+                        };
+                        specification.describe["second context"] = () =>
+                        {
+                            specification.it["does something else"] = () => { };
+                        };
+                        specification.Execute();
+                    };
+
+                    it["runs the activity only once"] = () =>
+                    {
+                        executed.ShouldEqual(1);
+                    };
+                };
+
                 context["with a failing activity"] = () => 
                 {
                     var specification = new MySpecification { Logger = new StringWriter() };
