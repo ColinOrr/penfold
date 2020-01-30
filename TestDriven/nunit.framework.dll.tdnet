@@ -1,4 +1,4 @@
-<TestRunner>
+﻿<TestRunner>
 	<FriendlyName>NUnit {0}.{1}.{2}</FriendlyName>
 	<AssemblyPath>Penfold.TestDriven.dll</AssemblyPath>
 	<TypeName>Penfold.TestDriven.TestRunner</TypeName>
