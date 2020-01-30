@@ -1,5 +1,4 @@
-﻿using NUnitTDNet.Adapter;
-using System.Reflection;
+﻿using System.Reflection;
 using TestDriven.Framework;
 
 namespace Penfold.TestDriven
